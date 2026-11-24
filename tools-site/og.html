@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>og:image — исходник</title>
+<!-- Исходник картинки img/og.png (1200×630). Открыть через локальный сервер из корня репозитория и снять скриншот окна 1200×630. Числа считаются из данных. -->
+<link rel="stylesheet" href="../css/site.css">
+<style>
+  html, body { margin: 0; background: #fff; color: #000; }
+  .og { width: 1200px; height: 630px; box-sizing: border-box; padding: 64px 72px; display: grid; grid-template-columns: 0.85fr 1.3fr; gap: 48px; align-items: center; }
+  .og h1 { font: 600 66px/1.02 var(--cond); max-width: none; color: #000; }
+  .og .brand { font: 600 30px/1 var(--cond); margin-top: 36px; color: #55584f; }
+  .og .pair { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: stretch; }
+  .og .tag { background: #ffe03d; color: #000; padding: 22px 24px; }
+  .og .tag--typical { background: #fff; border: 3px solid #000; color: #000; }
+  .og .tag-top { font-size: 20px; white-space: nowrap; }
+  .og .tag-main { flex-wrap: nowrap; white-space: nowrap; }
+  .og .tag-num { font-size: 128px; }
+  .og .tag--typical .tag-num { font-size: 88px; }
+  .og .tag-unit { font-size: 46px; }
+  .og .tag--typical .tag-unit { font-size: 34px; }
+  .og .tag-sub { font-size: 21px; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div>
+    <h1>Что положить в короб «Корзины доброты»</h1>
+    <p class="brand">Не гречкой единой</p>
+  </div>
+  <div class="pair">
+    <div class="tag"><p class="tag-top">Этот список на 300 ₽</p><p class="tag-main"><span class="tag-num" id="a">…</span><span class="tag-unit" id="au"></span></p><p class="tag-sub">калорий и белка, включая животный</p></div>
+    <div class="tag tag--typical"><p class="tag-top">Обычный набор</p><p class="tag-main"><span class="tag-num" id="b">…</span><span class="tag-unit" id="bu"></span></p><p class="tag-sub" id="bl"></p></div>
+  </div>
+</div>
+<script type="module">
+  import { solve, baselineFor } from '../js/engine.js';
+  import { daysParts } from '../js/format.js';
+  import { baselineLabel } from '../js/data.js';
+  const get = (f) => fetch('../data/' + f).then((r) => r.json());
+  const [catalog, norms, baseline] = await Promise.all([get('catalog.json'), get('norms.json'), get('baseline.json')]);
+  const adult = norms.profiles.find((p) => p.id === 'adult');
+  const r = solve({ items: catalog.items, profile: adult, budget: 300, mode: 'korob', groupNorms: norms.food_groups.groups });
+  const b = baselineFor(baseline, catalog.items, adult, 300);
+  const pa = daysParts(r.days.min), pb = daysParts(b.days.min);
+  document.getElementById('a').textContent = pa.num; document.getElementById('au').textContent = pa.unit;
+  document.getElementById('b').textContent = pb.num; document.getElementById('bu').textContent = pb.unit;
+  document.getElementById('bl').textContent = baselineLabel(b.categories);
+  document.body.dataset.ready = '1';
+</script>
+</body>
+</html>

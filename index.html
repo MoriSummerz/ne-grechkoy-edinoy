@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Что положить в короб «Корзины доброты» — Не гречкой единой</title>
+<meta name="description" content="Список покупок из «Пятёрочки», где на ваши деньги больше всего калорий и белка, включая животный. Для короба «Корзины доброты», недели по сертификату и наборов фонда. Расчёт в браузере, на открытых данных.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141512" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Не гречкой единой">
+<meta property="og:description" content="Что положить в короб «Корзины доброты»: товары, где на ваши деньги больше всего калорий и белка, включая животный.">
+<meta property="og:image" content="https://morisummerz.github.io/ne-grechkoy-edinoy/img/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/golos-text.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fira-xc-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<link rel="modulepreload" href="js/engine.js">
+<script type="module" src="js/app.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./">Не гречкой единой</a>
+    <nav class="nav" aria-label="Разделы">
+      <span class="views">
+        <a href="./?s=korob" data-view="korob">В короб доброты</a>
+        <a href="./?s=nedelya" data-view="nedelya">Неделя по сертификату</a>
+        <a href="./?s=nabory" data-view="nabory">Наборы для фонда</a>
+      </span>
+      <a href="./kak-schitaem.html" data-view="kak">Как это считается</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap" id="app">
+    <noscript><p class="state">Расчёт работает прямо в браузере, для него нужен включённый JavaScript.</p></noscript>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p id="footer-prices">Цены — из прайс-листов «Пятёрочки» и средние по России от Росстата. В вашем магазине цены и наличие могут отличаться.</p>
+    <p>Справочная оценка по нормам Минздрава и Роспотребнадзора, а не рекомендация врача. Витамины и минералы не учитываются.</p>
+    <p>Независимый проект для конкурса «Вайбкодинг добрых дел» на Хабре. Не сервис X5 и не сервис фонда «Выручаем».</p>
+    <p class="links"><a href="./kak-schitaem.html">Как это считается</a><a id="repo-link" href="https://github.com/morisummerz/ne-grechkoy-edinoy">Код и данные на GitHub</a></p>
+  </div>
+</footer>
+<div id="live" class="vh" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
